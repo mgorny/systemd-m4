@@ -26,7 +26,7 @@ AC_DEFUN([AM_SYSTEMD_SYSTEM_UNITS], [
 			[Directory for systemd service files (default: auto-detect through pkg-config)]))
 
 	AS_IF([test x"$with_systemdsystemunitdir" = x"yes" -o x"$with_systemdsystemunitdir" = x""], [
-		ac_systemd_def_systemunitdir=$($PKG_CONFIG --variable=systemdsystemunitdir systemd)
+		ac_systemd_def_systemunitdir=`$PKG_CONFIG --variable=systemdsystemunitdir systemd`
 
 		AS_IF([test x"$ac_systemd_def_systemunitdir" = x""], [
 			AS_IF([test x"$with_systemdsystemunitdir" = x"yes"], [
