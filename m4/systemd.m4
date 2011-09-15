@@ -20,6 +20,8 @@ AC_DEFUN([AC_SYSTEMD_SYSTEM_UNITS], [
 		AS_HELP_STRING([--with-systemdsystemunitdir=DIR],
 			[Directory for systemd service files (default: auto-detect through pkg-config)]))
 
+	AC_MSG_CHECKING([where to install systemd system units])
+
 	AS_IF([test x"$with_systemdsystemunitdir" = x"yes" -o x"$with_systemdsystemunitdir" = x""], [
 		ac_systemd_def_systemunitdir=`$PKG_CONFIG --variable=systemdsystemunitdir systemd`
 
@@ -32,6 +34,8 @@ AC_DEFUN([AC_SYSTEMD_SYSTEM_UNITS], [
 			with_systemdsystemunitdir=$ac_systemd_def_systemunitdir
 		])
 	])
+
+	AC_MSG_RESULT([$with_systemdsystemunitdir])
 
 	AS_IF([test x"$with_systemdsystemunitdir" != x"no"], [
 		AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
