@@ -1,4 +1,4 @@
-# AM_SYSTEMD_SYSTEM_UNITS
+# AC_SYSTEMD_SYSTEM_UNITS
 # -----------------------
 #
 # A macro grabbing all information necessary to install systemd system
@@ -6,19 +6,14 @@
 # pkg-config) and either gets the correct location for systemd system
 # units or the request not to install them.
 #
-# The result of these checks is stored in WITH_SYSTEMD_SYSTEM_UNITS
-# automake conditional. If installing system units was requested,
-# systemdsystemunitdir is set to a correct location as well.
+# If installing system units was requested, systemdsystemunitdir will be
+# substituted with a correct location; otherwise,
+# $with_systemdsystemunitdir will be set to 'no'.
 #
-# Example use:
-# - configure.ac:
-#	AM_SYSTEMD_SYSTEM_UNITS
-# - Makefile.am:
-#	if WITH_SYSTEMD_SYSTEM_UNITS
-#	dist_systemdsystemunit_DATA = foo.service
-#	endif
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the AM_* variant instead.
 
-AC_DEFUN([AM_SYSTEMD_SYSTEM_UNITS], [
+AC_DEFUN([AC_SYSTEMD_SYSTEM_UNITS], [
 	AC_REQUIRE([PKG_PROG_PKG_CONFIG])
 
 	AC_ARG_WITH([systemdsystemunitdir],
@@ -41,6 +36,27 @@ AC_DEFUN([AM_SYSTEMD_SYSTEM_UNITS], [
 	AS_IF([test x"$with_systemdsystemunitdir" != x"no"], [
 		AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
 	])
+])
+
+# AM_SYSTEMD_SYSTEM_UNITS
+# -----------------------
+#
+# An extended version of AC_SYSTEMD_SYSTEM_UNITS with automake support.
+#
+# In addition to substituting systemdsystemunitdir, it creates
+# an automake conditional called WITH_SYSTEMD_SYSTEM_UNITS.
+#
+# Example use:
+# - configure.ac:
+#	AM_SYSTEMD_SYSTEM_UNITS
+# - Makefile.am:
+#	if WITH_SYSTEMD_SYSTEM_UNITS
+#	dist_systemdsystemunit_DATA = foo.service
+#	endif
+
+AC_DEFUN([AM_SYSTEMD_SYSTEM_UNITS], [
+	AC_REQUIRE([AC_SYSTEMD_SYSTEM_UNITS])
+
 	AM_CONDITIONAL([WITH_SYSTEMD_SYSTEM_UNITS],
 		[test x"$with_systemdsystemunitdir" != x"no"])
 ])
