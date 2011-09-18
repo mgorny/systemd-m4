@@ -64,3 +64,35 @@ AC_DEFUN([AM_SYSTEMD_SYSTEM_UNITS], [
 	AM_CONDITIONAL([WITH_SYSTEMD_SYSTEM_UNITS],
 		[test x"$with_systemdsystemunitdir" != x"no"])
 ])
+
+# AC_SYSTEMD_MISC
+# ---------------
+#
+# Declare miscellaneous (unconditional) directories used by systemd,
+# and possibly other init systems.
+#
+# Declared directories:
+# - binfmtdir (binfmt.d for binfmt_misc decl files),
+# - modulesloaddir (modules-load.d for module loader).
+# - sysctldir (sysctl.d for /proc/sys settings),
+# - tmpfilesdir (tmpfiles.d for temporary file setup).
+#
+# Example use:
+# - configure.ac:
+#	AC_SYSTEMD_MISC
+# - Makefile.am:
+#	dist_binfmt_DATA = binfmt/foo.conf
+
+AC_DEFUN([AC_SYSTEMD_MISC], [
+	AS_IF([test x"$prefix" = x"/"], [
+		AC_SUBST([binfmtdir], [/usr/lib/binfmt.d])
+		AC_SUBST([modulesloaddir], [/usr/lib/modules-load.d])
+		AC_SUBST([sysctldir], [/usr/lib/sysctl.d])
+		AC_SUBST([tmpfilesdir], [/usr/lib/tmpfiles.d])
+	], [
+		AC_SUBST([binfmtdir], ['${prefix}/lib/binfmt.d'])
+		AC_SUBST([modulesloaddir], ['${prefix}/modules-load.d'])
+		AC_SUBST([sysctldir], ['${prefix}/sysctl.d'])
+		AC_SUBST([tmpfilesdir], ['${prefix}/tmpfiles.d'])
+	])
+])
