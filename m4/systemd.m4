@@ -15,7 +15,7 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AC], [
 		AS_HELP_STRING([--with-$1=DIR],
 			[Directory for $2 (default: auto-detect through pkg-config)]))
 
-	AC_MSG_CHECKING([where to install $2])
+	AC_MSG_CHECKING([$2 directory])
 
 	AS_IF([test x"$with_$1" = x"yes" -o x"$with_$1" = x""], [
 		ac_systemd_pkgconfig_dir=`$PKG_CONFIG --variable=$1 systemd`
@@ -66,7 +66,7 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AM], [
 # automake. Projects using automake should use the non-AC variant instead.
 
 AC_DEFUN([SYSTEMD_SYSTEMUNITDIR_AC], [
-	SYSTEMD_DIRECTORY_AC([systemdsystemunitdir], [systemd system units])
+	SYSTEMD_DIRECTORY_AC([systemdsystemunitdir], [systemd system unit])
 ])
 
 # SYSTEMD_SYSTEMUNITDIR
