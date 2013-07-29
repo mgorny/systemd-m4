@@ -42,8 +42,8 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AC], [
 ])
 
 
-# SYSTEMD_SYSTEM_UNITS_AC
-# -----------------------
+# SYSTEMD_SYSTEMUNITDIR_AC
+# ------------------------
 #
 # A macro grabbing all information necessary to install systemd system
 # units. It adds --with-systemdsystemunitdir (with defaults from
@@ -57,30 +57,30 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AC], [
 # This macro is intended for use only in specific projects not using
 # automake. Projects using automake should use the non-AC variant instead.
 
-AC_DEFUN([SYSTEMD_SYSTEM_UNITS_AC], [
+AC_DEFUN([SYSTEMD_SYSTEMUNITDIR_AC], [
 	SYSTEMD_DIRECTORY_AC([systemdsystemunitdir], [systemd system units])
 ])
 
-# SYSTEMD_SYSTEM_UNITS
-# --------------------
+# SYSTEMD_SYSTEMUNITDIR
+# ---------------------
 #
-# An extended version of SYSTEMD_SYSTEM_UNITS_AC with automake support.
+# An extended version of SYSTEMD_SYSTEMUNITDIR_AC with automake support.
 #
 # In addition to substituting systemdsystemunitdir, it creates
-# an automake conditional called WITH_SYSTEMD_SYSTEM_UNITS.
+# an automake conditional called WITH_SYSTEMDSYSTEMUNITDIR.
 #
 # Example use:
 # - configure.ac:
-#	SYSTEMD_SYSTEM_UNITS
+#	SYSTEMD_SYSTEMUNITDIR
 # - Makefile.am:
-#	if WITH_SYSTEMD_SYSTEM_UNITS
+#	if WITH_SYSTEMDSYSTEMUNITDIR
 #	dist_systemdsystemunit_DATA = foo.service
 #	endif
 
-AC_DEFUN([SYSTEMD_SYSTEM_UNITS], [
-	AC_REQUIRE([SYSTEMD_SYSTEM_UNITS_AC])
+AC_DEFUN([SYSTEMD_SYSTEMUNITDIR], [
+	AC_REQUIRE([SYSTEMD_SYSTEMUNITDIR_AC])
 
-	AM_CONDITIONAL([WITH_SYSTEMD_SYSTEM_UNITS],
+	AM_CONDITIONAL([WITH_SYSTEMDSYSTEMUNITDIR],
 		[test x"$with_systemdsystemunitdir" != x"no"])
 ])
 
@@ -115,3 +115,13 @@ AC_DEFUN([SYSTEMD_MISC], [
 		AC_SUBST([tmpfilesdir], ['${prefix}/tmpfiles.d'])
 	])
 ])
+
+
+# Obsolete macros.
+AU_ALIAS([SYSTEMD_SYSTEM_UNITS_AC], [SYSTEMD_SYSTEMUNITDIR_AC])
+AU_DEFUN([SYSTEMD_SYSTEM_UNITS], [
+	SYSTEMD_SYSTEMUNITDIR
+
+	AM_CONDITIONAL([WITH_SYSTEMD_SYSTEM_UNITS],
+		[test x"$with_systemdsystemunitdir" != x"no"])
+], [Please replace WITH_SYSTEMD_SYSTEM_UNITS automake conditionals with WITH_SYSTEMDSYSTEMUNITDIR and drop the definition of the former.])
