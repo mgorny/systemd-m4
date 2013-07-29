@@ -319,6 +319,8 @@ AC_DEFUN([SYSTEMD_UTILDIR], [
 #	SYSTEMD_MISC
 # - Makefile.am:
 #	dist_binfmt_DATA = binfmt/foo.conf
+#
+# TODO: systemd only supports /usr and /usr/local
 
 AC_DEFUN([SYSTEMD_MISC], [
 	AS_IF([test x"$prefix" = x"/"], [
@@ -326,11 +328,15 @@ AC_DEFUN([SYSTEMD_MISC], [
 		AC_SUBST([modulesloaddir], [/usr/lib/modules-load.d])
 		AC_SUBST([sysctldir], [/usr/lib/sysctl.d])
 		AC_SUBST([tmpfilesdir], [/usr/lib/tmpfiles.d])
+		AC_SUBST([kernelinstalldir], [/usr/lib/kernel/install.d])
+		AC_SUBST([ntpunitsdir], [/usr/lib/systemd/ntp-units.d])
 	], [
 		AC_SUBST([binfmtdir], ['${prefix}/lib/binfmt.d'])
 		AC_SUBST([modulesloaddir], ['${prefix}/modules-load.d'])
 		AC_SUBST([sysctldir], ['${prefix}/sysctl.d'])
 		AC_SUBST([tmpfilesdir], ['${prefix}/tmpfiles.d'])
+		AC_SUBST([kernelinstalldir], ['${prefix}/kernel/install.d'])
+		AC_SUBST([ntpunitsdir], ['${prefix}/systemd/ntp-units.d'])
 	])
 ])
 
