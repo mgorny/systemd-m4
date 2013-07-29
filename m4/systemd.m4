@@ -63,7 +63,8 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AM], [
 # $with_systemdsystemunitdir will be set to 'no'.
 #
 # This macro is intended for use only in specific projects not using
-# automake. Projects using automake should use the non-AC variant instead.
+# automake. Projects using automake should use the non-AC variant
+# instead.
 
 AC_DEFUN([SYSTEMD_SYSTEMUNITDIR_AC], [
 	SYSTEMD_DIRECTORY_AC([systemdsystemunitdir], [systemd system unit])
@@ -88,6 +89,217 @@ AC_DEFUN([SYSTEMD_SYSTEMUNITDIR_AC], [
 AC_DEFUN([SYSTEMD_SYSTEMUNITDIR], [
 	AC_REQUIRE([SYSTEMD_SYSTEMUNITDIR_AC])
 	SYSTEMD_DIRECTORY_AM([systemdsystemunitdir])
+])
+
+# SYSTEMD_SYSTEMPRESETDIR_AC
+# --------------------------
+#
+# A macro grabbing all information necessary to install systemd system
+# presets. It adds --with-systemdsystempresetdir (with defaults from
+# pkg-config) and either gets the correct location for systemd system
+# presets or the request not to install them.
+#
+# If installing system presets was requested, systemdsystempresetdir
+# will be substituted with a correct location; otherwise,
+# $with_systemdsystempresetdir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_SYSTEMPRESETDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemdsystempresetdir], [systemd system preset])
+])
+
+# SYSTEMD_SYSTEMPRESETDIR
+# -----------------------
+#
+# An extended version of SYSTEMD_SYSTEMPRESETDIR_AC with automake
+# support.
+#
+# In addition to substituting systemdsystempresetdir, it creates
+# an automake conditional called WITH_SYSTEMDSYSTEMPRESETDIR.
+
+AC_DEFUN([SYSTEMD_SYSTEMPRESETDIR], [
+	AC_REQUIRE([SYSTEMD_SYSTEMPRESETDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemdsystempresetdir])
+])
+
+# SYSTEMD_SYSTEMCONFDIR_AC
+# ------------------------
+#
+# A macro grabbing all information necessary to install systemd system
+# configuration. It adds --with-systemdsystemconfdir (with defaults from
+# pkg-config) and either gets the correct location for systemd system
+# configuration or the request not to install them.
+#
+# If installing to the systemconfdir was requested, systemdsystemconfdir
+# will be substituted with a correct location; otherwise,
+# $with_systemdsystemconfdir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_SYSTEMCONFDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemdsystemconfdir], [systemd system configuration])
+])
+
+# SYSTEMD_SYSTEMCONFDIR
+# -----------------------
+#
+# An extended version of SYSTEMD_SYSTEMCONFDIR_AC with automake
+# support.
+#
+# In addition to substituting systemdsystemconfdir, it creates
+# an automake conditional called WITH_SYSTEMDSYSTEMCONFDIR.
+
+AC_DEFUN([SYSTEMD_SYSTEMCONFDIR], [
+	AC_REQUIRE([SYSTEMD_SYSTEMCONFDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemdsystemconfdir])
+])
+
+# SYSTEMD_USERUNITDIR_AC
+# ------------------------
+#
+# A macro grabbing all information necessary to install systemd user
+# units. It adds --with-systemduserunitdir (with defaults from
+# pkg-config) and either gets the correct location for systemd user
+# units or the request not to install them.
+#
+# If installing user units was requested, systemduserunitdir will be
+# substituted with a correct location; otherwise,
+# $with_systemduserunitdir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_USERUNITDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemduserunitdir], [systemd user unit])
+])
+
+# SYSTEMD_USERUNITDIR
+# ---------------------
+#
+# An extended version of SYSTEMD_USERUNITDIR_AC with automake support.
+#
+# In addition to substituting systemduserunitdir, it creates
+# an automake conditional called WITH_SYSTEMDUSERUNITDIR.
+#
+# Example use:
+# - configure.ac:
+#	SYSTEMD_USERUNITDIR
+# - Makefile.am:
+#	if WITH_SYSTEMDUSERUNITDIR
+#	dist_systemduserunit_DATA = foo.service
+#	endif
+
+AC_DEFUN([SYSTEMD_USERUNITDIR], [
+	AC_REQUIRE([SYSTEMD_USERUNITDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemduserunitdir])
+])
+
+# SYSTEMD_USERPRESETDIR_AC
+# --------------------------
+#
+# A macro grabbing all information necessary to install systemd user
+# presets. It adds --with-systemduserpresetdir (with defaults from
+# pkg-config) and either gets the correct location for systemd user
+# presets or the request not to install them.
+#
+# If installing user presets was requested, systemduserpresetdir
+# will be substituted with a correct location; otherwise,
+# $with_systemduserpresetdir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_USERPRESETDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemduserpresetdir], [systemd user preset])
+])
+
+# SYSTEMD_USERPRESETDIR
+# -----------------------
+#
+# An extended version of SYSTEMD_USERPRESETDIR_AC with automake
+# support.
+#
+# In addition to substituting systemduserpresetdir, it creates
+# an automake conditional called WITH_SYSTEMDUSERPRESETDIR.
+
+AC_DEFUN([SYSTEMD_USERPRESETDIR], [
+	AC_REQUIRE([SYSTEMD_USERPRESETDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemduserpresetdir])
+])
+
+# SYSTEMD_USERCONFDIR_AC
+# ------------------------
+#
+# A macro grabbing all information necessary to install systemd user
+# configuration. It adds --with-systemduserconfdir (with defaults from
+# pkg-config) and either gets the correct location for systemd user
+# configuration or the request not to install them.
+#
+# If installing to the userconfdir was requested, systemduserconfdir
+# will be substituted with a correct location; otherwise,
+# $with_systemduserconfdir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_USERCONFDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemduserconfdir], [systemd user configuration])
+])
+
+# SYSTEMD_USERCONFDIR
+# -----------------------
+#
+# An extended version of SYSTEMD_USERCONFDIR_AC with automake
+# support.
+#
+# In addition to substituting systemduserconfdir, it creates
+# an automake conditional called WITH_SYSTEMDUSERCONFDIR.
+
+AC_DEFUN([SYSTEMD_USERCONFDIR], [
+	AC_REQUIRE([SYSTEMD_USERCONFDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemduserconfdir])
+])
+
+# SYSTEMD_UTILDIR_AC
+# ------------------
+#
+# A macro grabbing all information necessary to obtain systemd utility
+# directory. It adds --with-systemdutildir (with defaults from
+# pkg-config) and either gets the correct location for systemd
+# utility programs or the request not to install them.
+#
+# If installing to the utildir was requested, systemdutildir
+# will be substituted with a correct location; otherwise,
+# $with_systemdutildir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_UTILDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemdutildir], [systemd utility])
+])
+
+# SYSTEMD_UTILDIR
+# ---------------
+#
+# An extended version of SYSTEMD_UTILDIR_AC with automake
+# support.
+#
+# In addition to substituting systemdutildir, it creates
+# an automake conditional called WITH_SYSTEMDUTILDIR.
+
+AC_DEFUN([SYSTEMD_UTILDIR], [
+	AC_REQUIRE([SYSTEMD_UTILDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemdutildir])
 ])
 
 # SYSTEMD_MISC
