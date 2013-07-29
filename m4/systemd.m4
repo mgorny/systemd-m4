@@ -332,11 +332,11 @@ AC_DEFUN([SYSTEMD_MISC], [
 		AC_SUBST([ntpunitsdir], [/usr/lib/systemd/ntp-units.d])
 	], [
 		AC_SUBST([binfmtdir], ['${prefix}/lib/binfmt.d'])
-		AC_SUBST([modulesloaddir], ['${prefix}/modules-load.d'])
-		AC_SUBST([sysctldir], ['${prefix}/sysctl.d'])
-		AC_SUBST([tmpfilesdir], ['${prefix}/tmpfiles.d'])
-		AC_SUBST([kernelinstalldir], ['${prefix}/kernel/install.d'])
-		AC_SUBST([ntpunitsdir], ['${prefix}/systemd/ntp-units.d'])
+		AC_SUBST([modulesloaddir], ['${prefix}/lib/modules-load.d'])
+		AC_SUBST([sysctldir], ['${prefix}/lib/sysctl.d'])
+		AC_SUBST([tmpfilesdir], ['${prefix}/lib/tmpfiles.d'])
+		AC_SUBST([kernelinstalldir], ['${prefix}/lib/kernel/install.d'])
+		AC_SUBST([ntpunitsdir], ['${prefix}/lib/systemd/ntp-units.d'])
 	])
 ])
 
