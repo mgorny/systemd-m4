@@ -2,15 +2,11 @@
 # ---------------------------------------------------------------
 #
 # A generic macro that obtains one of the systemd directories defined
-# in systemd.pc. It adds --with-[$1] configure option and tries to
-# obtain the default from pkgconfig.
+# in systemd.pc. It adds --with-$1 configure option and tries to
+# obtain the default from pkg-config.
 #
 # If any location was found or given, the name given as $1 will be
 # substituted with it. Otherwise, $with_[$1] will be set to 'no'.
-#
-# This macro is intended for direct use only in projects not using
-# automake. Projects using automake should use the non-AC variant
-# instead.
 
 AC_DEFUN([SYSTEMD_DIRECTORY_AC], [
 	AC_REQUIRE([PKG_PROG_PKG_CONFIG])
@@ -41,6 +37,18 @@ AC_DEFUN([SYSTEMD_DIRECTORY_AC], [
 	])
 ])
 
+# SYSTEMD_DIRECTORY_AM(directory-variable)
+# ---------------------------------------------------------------
+#
+# Defines WITH_$1 automake macro if directory was set through
+# --with-$1 or obtained from pkg-config.
+
+AC_DEFUN([SYSTEMD_DIRECTORY_AM], [
+	m4_pushdef([AM_MACRO], WITH_[]m4_toupper([$1]))
+	AM_CONDITIONAL(AM_MACRO,
+		[test x"$with_$1" != x"no"])
+	m4_popdef([AM_MACRO])
+])
 
 # SYSTEMD_SYSTEMUNITDIR_AC
 # ------------------------
@@ -79,9 +87,7 @@ AC_DEFUN([SYSTEMD_SYSTEMUNITDIR_AC], [
 
 AC_DEFUN([SYSTEMD_SYSTEMUNITDIR], [
 	AC_REQUIRE([SYSTEMD_SYSTEMUNITDIR_AC])
-
-	AM_CONDITIONAL([WITH_SYSTEMDSYSTEMUNITDIR],
-		[test x"$with_systemdsystemunitdir" != x"no"])
+	SYSTEMD_DIRECTORY_AM([systemdsystemunitdir])
 ])
 
 # SYSTEMD_MISC
