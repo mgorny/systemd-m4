@@ -98,7 +98,7 @@ AC_DEFUN([SYSTEMD_SYSTEM_UNITS], [
 #
 # Example use:
 # - configure.ac:
-#	AC_SYSTEMD_MISC
+#	SYSTEMD_MISC
 # - Makefile.am:
 #	dist_binfmt_DATA = binfmt/foo.conf
 
