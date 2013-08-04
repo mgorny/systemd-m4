@@ -146,7 +146,7 @@ AC_DEFUN([SYSTEMD_SYSTEMCONFDIR_AC], [
 ])
 
 # SYSTEMD_SYSTEMCONFDIR
-# -----------------------
+# ---------------------
 #
 # An extended version of SYSTEMD_SYSTEMCONFDIR_AC with automake
 # support.
@@ -160,7 +160,7 @@ AC_DEFUN([SYSTEMD_SYSTEMCONFDIR], [
 ])
 
 # SYSTEMD_USERUNITDIR_AC
-# ------------------------
+# ----------------------
 #
 # A macro grabbing all information necessary to install systemd user
 # units. It adds --with-systemduserunitdir (with defaults from
@@ -180,7 +180,7 @@ AC_DEFUN([SYSTEMD_USERUNITDIR_AC], [
 ])
 
 # SYSTEMD_USERUNITDIR
-# ---------------------
+# -------------------
 #
 # An extended version of SYSTEMD_USERUNITDIR_AC with automake support.
 #
@@ -201,7 +201,7 @@ AC_DEFUN([SYSTEMD_USERUNITDIR], [
 ])
 
 # SYSTEMD_USERPRESETDIR_AC
-# --------------------------
+# ------------------------
 #
 # A macro grabbing all information necessary to install systemd user
 # presets. It adds --with-systemduserpresetdir (with defaults from
@@ -221,7 +221,7 @@ AC_DEFUN([SYSTEMD_USERPRESETDIR_AC], [
 ])
 
 # SYSTEMD_USERPRESETDIR
-# -----------------------
+# ---------------------
 #
 # An extended version of SYSTEMD_USERPRESETDIR_AC with automake
 # support.
@@ -235,7 +235,7 @@ AC_DEFUN([SYSTEMD_USERPRESETDIR], [
 ])
 
 # SYSTEMD_USERCONFDIR_AC
-# ------------------------
+# ----------------------
 #
 # A macro grabbing all information necessary to install systemd user
 # configuration. It adds --with-systemduserconfdir (with defaults from
@@ -255,7 +255,7 @@ AC_DEFUN([SYSTEMD_USERCONFDIR_AC], [
 ])
 
 # SYSTEMD_USERCONFDIR
-# -----------------------
+# -------------------
 #
 # An extended version of SYSTEMD_USERCONFDIR_AC with automake
 # support.
@@ -300,6 +300,108 @@ AC_DEFUN([SYSTEMD_UTILDIR_AC], [
 AC_DEFUN([SYSTEMD_UTILDIR], [
 	AC_REQUIRE([SYSTEMD_UTILDIR_AC])
 	SYSTEMD_DIRECTORY_AM([systemdutildir])
+])
+
+# SYSTEMD_SYSTEMGENERATORDIR_AC
+# -----------------------------
+#
+# A macro grabbing all information necessary to install systemd system
+# generators. It adds --with-systemdsystemgeneratordir (with defaults from
+# pkg-config) and either gets the correct location for systemd system
+# generators or the request not to install them.
+#
+# If installing system generators was requested, systemdsystemgeneratordir
+# will be substituted with a correct location; otherwise,
+# $with_systemdsystemgeneratordir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_SYSTEMGENERATORDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemdsystemgeneratordir], [systemd system generator])
+])
+
+# SYSTEMD_SYSTEMGENERATORDIR
+# --------------------------
+#
+# An extended version of SYSTEMD_SYSTEMGENERATORDIR_AC with automake
+# support.
+#
+# In addition to substituting systemdsystemgeneratordir, it creates
+# an automake conditional called WITH_SYSTEMDSYSTEMGENERATORDIR.
+
+AC_DEFUN([SYSTEMD_SYSTEMGENERATORDIR], [
+	AC_REQUIRE([SYSTEMD_SYSTEMGENERATORDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemdsystemgeneratordir])
+])
+
+# SYSTEMD_USERGENERATORDIR_AC
+# ---------------------------
+#
+# A macro grabbing all information necessary to install systemd user
+# generators. It adds --with-systemdusergeneratordir (with defaults from
+# pkg-config) and either gets the correct location for systemd user
+# generators or the request not to install them.
+#
+# If installing user generators was requested, systemdusergeneratordir
+# will be substituted with a correct location; otherwise,
+# $with_systemdusergeneratordir will be set to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_USERGENERATORDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([systemdusergeneratordir], [systemd user generator])
+])
+
+# SYSTEMD_USERGENERATORDIR
+# ------------------------
+#
+# An extended version of SYSTEMD_USERGENERATORDIR_AC with automake
+# support.
+#
+# In addition to substituting systemdusergeneratordir, it creates
+# an automake conditional called WITH_SYSTEMDUSERGENERATORDIR.
+
+AC_DEFUN([SYSTEMD_USERGENERATORDIR], [
+	AC_REQUIRE([SYSTEMD_USERGENERATORDIR_AC])
+	SYSTEMD_DIRECTORY_AM([systemdusergeneratordir])
+])
+
+# SYSTEMD_CATALOGDIR_AC
+# ---------------------
+#
+# A macro grabbing all information necessary to install Journal
+# catalogs. It adds --with-catalogdir (with defaults from pkg-config)
+# and either gets the correct location for catalogs or the request
+# not to install them.
+#
+# If installing catalogs was requested, catalogdir will be substituted
+# with a correct location; otherwise, $with_catalogdir will be set
+# to 'no'.
+#
+# This macro is intended for use only in specific projects not using
+# automake. Projects using automake should use the non-AC variant
+# instead.
+
+AC_DEFUN([SYSTEMD_CATALOGDIR_AC], [
+	SYSTEMD_DIRECTORY_AC([catalogdir], [Journal catalog])
+])
+
+# SYSTEMD_CATALOGDIR
+# ------------------
+#
+# An extended version of SYSTEMD_CATALOGDIR_AC with automake
+# support.
+#
+# In addition to substituting catalogdir, it creates an automake
+# conditional called WITH_CATALOGDIR.
+
+AC_DEFUN([SYSTEMD_CATALOGDIR], [
+	AC_REQUIRE([SYSTEMD_CATALOGDIR_AC])
+	SYSTEMD_DIRECTORY_AM([catalogdir])
 ])
 
 # SYSTEMD_MISC
