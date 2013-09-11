@@ -1,5 +1,5 @@
 AC_PREREQ([2.59])
-AC_INIT([systemd-sdk], [0])
+AC_INIT([systemd-m4], [0])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([1.6 foreign dist-bzip2 no-dependencies])
 
